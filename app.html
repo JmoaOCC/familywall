@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>FamilyWall · App</title>
+  <title>FamilyFlower · App</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
@@ -13,11 +13,18 @@
 
   <header class="site-header">
     <div class="container site-nav">
-      <a href="index.html" class="logo" aria-label="FamilyWall inicio">
-        <span class="logo-mark" aria-hidden="true">
-          <span></span><span></span><span></span><span></span>
+      <a href="index.html" class="logo" aria-label="FamilyFlower inicio">
+        <span class="logo-flower" aria-hidden="true">
+          <svg viewBox="0 0 32 32"><g transform="translate(16,16)">
+            <ellipse cx="0" cy="-8" rx="4.5" ry="7.5" fill="#2b8aff"/>
+            <ellipse cx="0" cy="-8" rx="4.5" ry="7.5" fill="#4fb96a" transform="rotate(72)"/>
+            <ellipse cx="0" cy="-8" rx="4.5" ry="7.5" fill="#f59e3a" transform="rotate(144)"/>
+            <ellipse cx="0" cy="-8" rx="4.5" ry="7.5" fill="#8b6cf0" transform="rotate(216)"/>
+            <ellipse cx="0" cy="-8" rx="4.5" ry="7.5" fill="#ee6aa3" transform="rotate(288)"/>
+            <circle r="3.8" fill="#f1c145"/>
+          </g></svg>
         </span>
-        <span class="logo-text">FamilyWall</span>
+        <span class="logo-text">FamilyFlower</span>
       </a>
       <nav class="nav-links" aria-label="Principal">
         <a href="index.html">Inicio</a>
@@ -25,12 +32,6 @@
         <a href="admin.html">Admin</a>
       </nav>
       <div class="nav-actions">
-        <div class="family-avatars" aria-label="Miembros activos">
-          <span class="av av-blue">M</span>
-          <span class="av av-green">P</span>
-          <span class="av av-orange">L</span>
-          <span class="av av-purple">+2</span>
-        </div>
         <a href="index.html" class="btn btn-ghost">← Web</a>
       </div>
       <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
@@ -39,20 +40,36 @@
     </div>
   </header>
 
-  <main class="app-main">
-    <div class="container">
-
-      <div class="app-page-head">
-        <div>
-          <p class="eyebrow">App familiar</p>
-          <h1>Tu día a día, en tres pestañas</h1>
+  <!-- Saludo en gradiente -->
+  <section class="app-hero">
+    <div class="container app-hero-grid">
+      <div>
+        <p class="eyebrow">Tu día a día familiar</p>
+        <h1 id="greeting">Hola, familia 👋</h1>
+        <p class="lead lead-light" id="today-line">Esto es lo que tenéis por delante hoy.</p>
+      </div>
+      <div class="app-summary">
+        <div class="summary-tile summary-tile--blue">
+          <span class="summary-tile-icon">📅</span>
+          <strong id="today-count">0</strong>
+          <span>eventos hoy</span>
         </div>
-        <div class="app-summary">
-          <div class="summary-pill summary-pill--blue"><strong id="today-count">0</strong><span>eventos hoy</span></div>
-          <div class="summary-pill summary-pill--orange"><strong id="menu-count">0</strong><span>platos planeados</span></div>
-          <div class="summary-pill summary-pill--green"><strong id="shopping-count">0</strong><span>artículos</span></div>
+        <div class="summary-tile summary-tile--orange">
+          <span class="summary-tile-icon">🍽️</span>
+          <strong id="menu-count">0</strong>
+          <span>platos planeados</span>
+        </div>
+        <div class="summary-tile summary-tile--green">
+          <span class="summary-tile-icon">🛒</span>
+          <strong id="shopping-count">0</strong>
+          <span>en la lista</span>
         </div>
       </div>
+    </div>
+  </section>
+
+  <main class="app-main">
+    <div class="container">
 
       <section class="app-tabs" role="tablist">
         <button class="app-tab active" data-tab="calendar" role="tab"><span class="nav-emoji">📅</span> Calendario</button>
@@ -62,22 +79,17 @@
 
       <!-- Calendario -->
       <section class="tab-panel active" id="calendar" role="tabpanel">
-        <div class="card">
-          <div class="section-header">
-            <div>
-              <p class="tag">CALENDARIO</p>
-              <h3>Agenda familiar</h3>
-            </div>
-            <button class="btn btn-primary" id="add-event">+ Añadir evento</button>
-          </div>
-          <div class="month-panel">
-            <div class="month-nav">
-              <button class="ghost-button" id="prev-month" aria-label="Mes anterior">‹</button>
+        <div class="cal-layout">
+          <div class="card">
+            <div class="section-header">
               <div>
-                <p class="month-label">Mes</p>
-                <strong id="calendar-month-name"></strong>
+                <p class="tag">CALENDARIO</p>
+                <h3 id="calendar-month-name">Mes</h3>
               </div>
-              <button class="ghost-button" id="next-month" aria-label="Mes siguiente">›</button>
+              <div class="month-nav-inline">
+                <button class="ghost-button" id="prev-month" aria-label="Mes anterior">‹</button>
+                <button class="ghost-button" id="next-month" aria-label="Mes siguiente">›</button>
+              </div>
             </div>
             <div class="calendar-legend">
               <div class="legend-item"><span class="legend-dot legend-blue"></span>Cita</div>
@@ -87,21 +99,31 @@
             </div>
             <div class="month-grid" id="month-grid"></div>
           </div>
-          <div class="event-list" id="event-list"></div>
+
+          <aside class="card cal-side">
+            <div class="section-header">
+              <div>
+                <p class="tag">PRÓXIMOS</p>
+                <h3>Próximos eventos</h3>
+              </div>
+              <button class="btn btn-primary btn-sm" id="add-event">+ Añadir</button>
+            </div>
+            <div class="event-list" id="event-list"></div>
+          </aside>
         </div>
       </section>
 
-      <!-- Menú -->
+      <!-- Menú semanal -->
       <section class="tab-panel" id="menu" role="tabpanel">
         <div class="card">
           <div class="section-header">
             <div>
               <p class="tag">MENÚ SEMANAL</p>
-              <h3>Planifica las comidas</h3>
+              <h3>Lo que vais a comer esta semana</h3>
             </div>
             <button class="btn btn-primary" id="add-menu-item">+ Añadir plato</button>
           </div>
-          <div class="menu-list" id="menu-list"></div>
+          <div class="week-grid" id="week-grid"></div>
         </div>
       </section>
 
@@ -111,11 +133,27 @@
           <div class="section-header">
             <div>
               <p class="tag">LISTA DE LA COMPRA</p>
-              <h3>Todo en un lugar</h3>
+              <h3>Lo que falta en casa</h3>
             </div>
-            <button class="btn btn-primary" id="add-item">+ Añadir artículo</button>
+            <span class="muted-inline" id="shopping-summary">0 pendientes · 0 comprados</span>
           </div>
-          <div class="shopping-list" id="shopping-list"></div>
+
+          <form class="quick-add" id="quick-add-form">
+            <span class="quick-add-icon">+</span>
+            <input type="text" id="quick-add-input" placeholder="Añadir artículo y pulsa Enter…" autocomplete="off">
+            <input type="text" id="quick-add-qty" placeholder="x1 / 1 kg" />
+            <button type="submit" class="btn btn-primary">Añadir</button>
+          </form>
+
+          <div class="shopping-section">
+            <h4 class="shopping-section-title">Pendiente <span id="pending-count">0</span></h4>
+            <div class="shopping-list" id="shopping-pending"></div>
+          </div>
+
+          <div class="shopping-section">
+            <h4 class="shopping-section-title shopping-section-title--done">Comprado <span id="done-count">0</span></h4>
+            <div class="shopping-list" id="shopping-done"></div>
+          </div>
         </div>
       </section>
 
