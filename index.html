@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>FamilyFlow - Organización para tablet</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">FamilyFlow</p>
+        <h1>Tu familia organizada en una tablet</h1>
+      </div>
+      <button class="primary-button" id="open-dashboard">Abrir panel</button>
+    </header>
+
+    <main class="hero-card">
+      <div class="hero-copy">
+        <p class="tag">Calendario • Menús • Lista de la compra</p>
+        <h2>Diseñado para familias que usan tablet</h2>
+        <p>Agenda familiar, menú semanal y compras en una interfaz limpia, con botones grandes y navegación fácil.</p>
+      </div>
+      <div class="hero-actions">
+        <button class="secondary-button" data-target="calendar">Ir al calendario</button>
+        <button class="secondary-button" data-target="menu">Ir al menú</button>
+        <button class="secondary-button" data-target="shopping">Ir a la lista</button>
+      </div>
+    </main>
+
+    <section class="app-nav">
+      <button class="nav-button active" data-tab="dashboard">Inicio</button>
+      <button class="nav-button" data-tab="calendar">Calendario</button>
+      <button class="nav-button" data-tab="menu">Menú</button>
+      <button class="nav-button" data-tab="shopping">Compra</button>
+    </section>
+
+    <section class="tab-panel active" id="dashboard">
+      <div class="card">
+        <h3>Resumen rápido</h3>
+        <div class="grid-3">
+          <div class="stat-card">
+            <span>Eventos hoy</span>
+            <strong id="today-count">0</strong>
+          </div>
+          <div class="stat-card">
+            <span>Platos planeados</span>
+            <strong id="menu-count">0</strong>
+          </div>
+          <div class="stat-card">
+            <span>Artículos pendientes</span>
+            <strong id="shopping-count">0</strong>
+          </div>
+        </div>
+      </div>
+      <div class="card highlight-card">
+        <h3>Consejo familiar</h3>
+        <p>Usa este tablero para ver el calendario, elegir el menú y marcar los productos comprados sin salir de la pantalla.</p>
+      </div>
+    </section>
+
+    <section class="tab-panel" id="calendar">
+      <div class="card">
+        <div class="section-header">
+          <div>
+            <p class="tag">CALENDARIO</p>
+            <h3>Agenda familiar</h3>
+          </div>
+          <button class="primary-button" id="add-event">Añadir evento</button>
+        </div>
+        <div class="calendar-grid" id="event-list"></div>
+      </div>
+    </section>
+
+    <section class="tab-panel" id="menu">
+      <div class="card">
+        <div class="section-header">
+          <div>
+            <p class="tag">MENÚ SEMANAL</p>
+            <h3>Planifica comidas</h3>
+          </div>
+          <button class="primary-button" id="add-menu-item">Agregar plato</button>
+        </div>
+        <div class="menu-list" id="menu-list"></div>
+      </div>
+    </section>
+
+    <section class="tab-panel" id="shopping">
+      <div class="card">
+        <div class="section-header">
+          <div>
+            <p class="tag">LISTA DE LA COMPRA</p>
+            <h3>Todo en un lugar</h3>
+          </div>
+          <button class="primary-button" id="add-item">Agregar artículo</button>
+        </div>
+        <div class="shopping-list" id="shopping-list"></div>
+      </div>
+    </section>
+
+    <footer class="app-footer">
+      <p>FamilyFlow · Organización familiar fácil y visual para tablet</p>
+    </footer>
+  </div>
+
+  <div class="modal hidden" id="modal">
+    <div class="modal-panel">
+      <button class="close-button" id="close-modal">×</button>
+      <div id="modal-content"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
