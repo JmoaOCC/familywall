@@ -4,166 +4,451 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>FamilyWall · Tu asistente familiar</title>
+  <meta name="description" content="La app que coordina la vida diaria de tu familia: calendario, tareas, lista de la compra, comidas, fotos, ubicación y mensajería en un solo lugar." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="app-shell">
-    <header class="app-header">
-      <div class="brand">
-        <span class="brand-mark" aria-hidden="true">
-          <span class="brand-dot brand-dot--blue"></span>
-          <span class="brand-dot brand-dot--green"></span>
-          <span class="brand-dot brand-dot--orange"></span>
-          <span class="brand-dot brand-dot--purple"></span>
+
+  <!-- ───── Top nav ───── -->
+  <header class="site-header">
+    <div class="container site-nav">
+      <a href="#" class="logo" aria-label="FamilyWall inicio">
+        <span class="logo-mark" aria-hidden="true">
+          <span></span><span></span><span></span><span></span>
         </span>
-        <div>
-          <p class="eyebrow">FamilyWall</p>
-          <h1>Tu asistente familiar</h1>
-        </div>
-      </div>
-      <div class="header-actions">
-        <div class="family-avatars" aria-label="Miembros de la familia">
-          <span class="avatar avatar--blue">M</span>
-          <span class="avatar avatar--green">P</span>
-          <span class="avatar avatar--orange">L</span>
-          <span class="avatar avatar--purple">+2</span>
-        </div>
-        <button class="primary-button" id="open-dashboard">Abrir panel</button>
-      </div>
-    </header>
+        <span class="logo-text">FamilyWall</span>
+      </a>
 
-    <main class="hero-card">
-      <div class="hero-copy">
-        <p class="tag">Calendario · Menús · Compras · Familia</p>
-        <h2>Coordina la vida diaria de toda la familia</h2>
-        <p>Agenda compartida, menú semanal y lista de la compra en una interfaz luminosa, con botones grandes y navegación fácil para padres, niños y abuelos.</p>
-        <div class="hero-chips">
-          <span class="hero-chip"><span class="chip-icon">📅</span>Agenda compartida</span>
-          <span class="hero-chip"><span class="chip-icon">🍽️</span>Menú semanal</span>
-          <span class="hero-chip"><span class="chip-icon">🛒</span>Lista de la compra</span>
-          <span class="hero-chip"><span class="chip-icon">💙</span>Para toda la familia</span>
-        </div>
-      </div>
-      <div class="hero-actions">
-        <button class="secondary-button secondary-button--blue" data-target="calendar"><span class="btn-emoji">📅</span> Ir al calendario</button>
-        <button class="secondary-button secondary-button--green" data-target="menu"><span class="btn-emoji">🍽️</span> Ir al menú</button>
-        <button class="secondary-button secondary-button--orange" data-target="shopping"><span class="btn-emoji">🛒</span> Ir a la lista</button>
-      </div>
-    </main>
+      <nav class="nav-links" aria-label="Principal">
+        <a href="#funciones">Funciones</a>
+        <a href="#premium">Premium</a>
+        <a href="#opiniones">Opiniones</a>
+        <a href="#ayuda">Ayuda</a>
+      </nav>
 
-    <section class="app-nav">
-      <button class="nav-button active" data-tab="dashboard"><span class="nav-emoji">🏠</span> Inicio</button>
-      <button class="nav-button" data-tab="calendar"><span class="nav-emoji">📅</span> Calendario</button>
-      <button class="nav-button" data-tab="menu"><span class="nav-emoji">🍽️</span> Menú</button>
-      <button class="nav-button" data-tab="shopping"><span class="nav-emoji">🛒</span> Compra</button>
-    </section>
-
-    <section class="tab-panel active" id="dashboard">
-      <div class="card">
-        <div class="section-header">
-          <div>
-            <p class="tag">PANEL FAMILIAR</p>
-            <h3>Resumen rápido</h3>
-          </div>
-          <span class="today-chip today-chip--soft">Hoy</span>
-        </div>
-        <div class="grid-3">
-          <div class="stat-card stat-card--blue">
-            <span class="stat-icon">📅</span>
-            <span>Eventos hoy</span>
-            <strong id="today-count">0</strong>
-          </div>
-          <div class="stat-card stat-card--green">
-            <span class="stat-icon">🍽️</span>
-            <span>Platos planeados</span>
-            <strong id="menu-count">0</strong>
-          </div>
-          <div class="stat-card stat-card--orange">
-            <span class="stat-icon">🛒</span>
-            <span>Artículos pendientes</span>
-            <strong id="shopping-count">0</strong>
-          </div>
-        </div>
+      <div class="nav-actions">
+        <a href="#" class="link-muted">Iniciar sesión</a>
+        <a href="#" class="btn btn-primary">Regístrate gratis</a>
       </div>
-      <div class="card highlight-card">
-        <div class="highlight-icon">💡</div>
-        <div>
-          <h3>Consejo familiar</h3>
-          <p>Usa este tablero para ver el calendario, elegir el menú y marcar los productos comprados sin salir de la pantalla. Pensado para tablet, perfecto para colgar en la cocina.</p>
-        </div>
-      </div>
-    </section>
 
-    <section class="tab-panel" id="calendar">
-      <div class="card">
-        <div class="section-header">
-          <div>
-            <p class="tag">CALENDARIO</p>
-            <h3>Agenda familiar</h3>
-          </div>
-          <button class="primary-button" id="add-event">Añadir evento</button>
-        </div>
-        <div class="month-panel">
-          <div class="month-nav">
-            <button class="ghost-button" id="prev-month">&#8249;</button>
-            <div>
-              <p class="month-label">Mes</p>
-              <strong id="calendar-month-name"></strong>
-            </div>
-            <button class="ghost-button" id="next-month">&#8250;</button>
-          </div>
-          <div class="calendar-legend">
-            <div class="legend-item"><span class="legend-dot legend-blue"></span>Cita</div>
-            <div class="legend-item"><span class="legend-dot legend-green"></span>Escuela</div>
-            <div class="legend-item"><span class="legend-dot legend-orange"></span>Actividad</div>
-            <div class="legend-item"><span class="legend-dot legend-purple"></span>Otro</div>
-          </div>
-          <div class="month-grid" id="month-grid"></div>
-        </div>
-        <div class="calendar-grid" id="event-list"></div>
-      </div>
-    </section>
-
-    <section class="tab-panel" id="menu">
-      <div class="card">
-        <div class="section-header">
-          <div>
-            <p class="tag">MENÚ SEMANAL</p>
-            <h3>Planifica comidas</h3>
-          </div>
-          <button class="primary-button" id="add-menu-item">Agregar plato</button>
-        </div>
-        <div class="menu-list" id="menu-list"></div>
-      </div>
-    </section>
-
-    <section class="tab-panel" id="shopping">
-      <div class="card">
-        <div class="section-header">
-          <div>
-            <p class="tag">LISTA DE LA COMPRA</p>
-            <h3>Todo en un lugar</h3>
-          </div>
-          <button class="primary-button" id="add-item">Agregar artículo</button>
-        </div>
-        <div class="shopping-list" id="shopping-list"></div>
-      </div>
-    </section>
-
-    <footer class="app-footer">
-      <p>FamilyWall · Organización familiar fácil y visual para tablet</p>
-    </footer>
-  </div>
-
-  <div class="modal hidden" id="modal">
-    <div class="modal-panel">
-      <button class="close-button" id="close-modal">×</button>
-      <div id="modal-content"></div>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-  </div>
+  </header>
+
+  <!-- ───── Hero ───── -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">App familiar · Calendario · Listas · Comidas</p>
+        <h1>Tu asistente <span class="text-blue">familiar</span></h1>
+        <p class="lead">
+          Coordina la agenda, las tareas, las compras y los recuerdos de toda la familia en una sola
+          aplicación luminosa, fácil de usar y pensada para padres, niños y abuelos.
+        </p>
+        <div class="cta-row">
+          <a href="#" class="btn btn-primary btn-lg">Regístrate gratis</a>
+          <a href="#funciones" class="btn btn-ghost btn-lg">Ver funciones</a>
+        </div>
+        <div class="store-badges">
+          <a href="#" class="store-badge" aria-label="Descargar en App Store">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.5 12.5c0-2 1.6-3 1.7-3a3.6 3.6 0 0 0-2.9-1.6c-1.2-.1-2.4.7-3 .7-.6 0-1.6-.7-2.7-.7a3.8 3.8 0 0 0-3.2 2c-1.4 2.4-.4 6 1 8 .7.9 1.5 2 2.6 2 1 0 1.4-.7 2.7-.7s1.6.7 2.7.7c1.1 0 1.8-1 2.5-2a8.7 8.7 0 0 0 1.1-2.3 3.5 3.5 0 0 1-2.5-3.1zm-2.4-5.7a3.4 3.4 0 0 0 .8-2.5 3.6 3.6 0 0 0-2.3 1.2 3.3 3.3 0 0 0-.8 2.4 3 3 0 0 0 2.3-1.1z"/></svg>
+            <span>
+              <small>Disponible en</small>
+              <strong>App Store</strong>
+            </span>
+          </a>
+          <a href="#" class="store-badge" aria-label="Descargar en Google Play">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 2.3a1.6 1.6 0 0 0-.6 1.3v16.8a1.6 1.6 0 0 0 .6 1.3l9.5-9.7zm10.6 8.4 2.5-2.5L6.4 2.1a1.6 1.6 0 0 0-1.3-.1zm5.6 1L17.4 9 14.7 12l2.7 3 2.4-1.4a1.6 1.6 0 0 0 0-2.9zM5.1 21.9a1.6 1.6 0 0 0 1.3-.1l10.3-6 -2.5-2.5z"/></svg>
+            <span>
+              <small>Consíguelo en</small>
+              <strong>Google Play</strong>
+            </span>
+          </a>
+        </div>
+        <ul class="trust-list">
+          <li><span class="check">✓</span> Gratis para siempre</li>
+          <li><span class="check">✓</span> Sin publicidad</li>
+          <li><span class="check">✓</span> Privacidad familiar</li>
+        </ul>
+      </div>
+
+      <!-- Phone mockup (CSS) -->
+      <div class="hero-visual" aria-hidden="true">
+        <div class="phone phone-front">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="screen-header">
+              <strong>Hoy</strong>
+              <span class="dot-row"><i></i><i></i><i></i></span>
+            </div>
+            <div class="screen-card screen-card--blue">
+              <span class="screen-icon">📅</span>
+              <div>
+                <strong>Reunión escuela</strong>
+                <small>Hoy · 17:30 · Lucía</small>
+              </div>
+            </div>
+            <div class="screen-card screen-card--green">
+              <span class="screen-icon">⚽</span>
+              <div>
+                <strong>Fútbol Mateo</strong>
+                <small>Hoy · 18:00</small>
+              </div>
+            </div>
+            <div class="screen-card screen-card--orange">
+              <span class="screen-icon">🛒</span>
+              <div>
+                <strong>Compra semanal</strong>
+                <small>12 productos pendientes</small>
+              </div>
+            </div>
+            <div class="screen-avatars">
+              <span class="av av-blue">M</span>
+              <span class="av av-green">P</span>
+              <span class="av av-orange">L</span>
+              <span class="av av-purple">A</span>
+            </div>
+          </div>
+        </div>
+        <div class="phone phone-back">
+          <div class="phone-notch"></div>
+          <div class="phone-screen screen-chat">
+            <div class="bubble bubble-in">¿Quién recoge a Lucía hoy? 🚸</div>
+            <div class="bubble bubble-out">Yo me encargo 👍</div>
+            <div class="bubble bubble-in">¡Gracias! 💙</div>
+            <div class="chat-input"><span>Escribe un mensaje…</span></div>
+          </div>
+        </div>
+        <div class="floating-card floating-card--cal">
+          <span class="fc-icon">🗓️</span>
+          <div>
+            <strong>5 eventos esta semana</strong>
+            <small>Familia coordinada</small>
+          </div>
+        </div>
+        <div class="floating-card floating-card--loc">
+          <span class="fc-icon">📍</span>
+          <div>
+            <strong>Mateo ha llegado al colegio</strong>
+            <small>Hace 2 min</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───── Logos / social proof ───── -->
+  <section class="social-proof">
+    <div class="container social-proof-inner">
+      <p>Más de <strong>5 millones</strong> de familias ya organizan su día a día con FamilyWall</p>
+      <div class="stars" aria-label="Valoración media 4,7 sobre 5">
+        <span>★★★★★</span>
+        <small>4,7 / 5 en App Store y Google Play</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───── Features grid ───── -->
+  <section id="funciones" class="features">
+    <div class="container">
+      <header class="section-head">
+        <p class="eyebrow">Funciones</p>
+        <h2>Todo lo que tu familia necesita, en un solo lugar</h2>
+        <p class="section-sub">Una caja de herramientas pensada para simplificar la vida diaria: planifica, comparte y nunca olvides nada importante.</p>
+      </header>
+
+      <div class="features-grid">
+        <article class="feature-card f-blue">
+          <span class="feature-icon">🏠</span>
+          <h3>Cuadro de mandos</h3>
+          <p>Una vista única con la agenda del día, mensajes, listas y notas familiares.</p>
+        </article>
+        <article class="feature-card f-green">
+          <span class="feature-icon">📅</span>
+          <h3>Calendario familiar</h3>
+          <p>Comparte eventos por miembro y por color. Sincroniza con Google y Apple.</p>
+        </article>
+        <article class="feature-card f-orange">
+          <span class="feature-icon">✅</span>
+          <h3>Listas y tareas</h3>
+          <p>Listas compartidas en tiempo real para la compra, recados y rutinas.</p>
+        </article>
+        <article class="feature-card f-purple">
+          <span class="feature-icon">💶</span>
+          <h3>Presupuesto <span class="badge-premium">Premium</span></h3>
+          <p>Controla los gastos del hogar y comparte cuentas comunes.</p>
+        </article>
+        <article class="feature-card f-pink">
+          <span class="feature-icon">🍽️</span>
+          <h3>Menú semanal</h3>
+          <p>Planifica las comidas y genera la lista de la compra automáticamente.</p>
+        </article>
+        <article class="feature-card f-teal">
+          <span class="feature-icon">📸</span>
+          <h3>Fotos y vídeos</h3>
+          <p>Guarda recuerdos privados y compártelos solo con quien tú quieras.</p>
+        </article>
+        <article class="feature-card f-red">
+          <span class="feature-icon">📍</span>
+          <h3>Ubicación en tiempo real</h3>
+          <p>Sabe cuándo llegan los peques al colegio o a casa de los abuelos.</p>
+        </article>
+        <article class="feature-card f-blue">
+          <span class="feature-icon">💬</span>
+          <h3>Mensajería privada</h3>
+          <p>Chat familiar con burbujas, emojis y notas de voz. Sin distracciones.</p>
+        </article>
+        <article class="feature-card f-green">
+          <span class="feature-icon">👨‍👩‍👧‍👦</span>
+          <h3>Multigrupos</h3>
+          <p>Crea grupos para familia extensa, cuidadores o amigos cercanos.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───── Alternating feature rows ───── -->
+  <section class="feature-rows">
+    <div class="container">
+
+      <article class="feature-row">
+        <div class="feature-row-copy">
+          <p class="eyebrow text-blue">Calendario</p>
+          <h2>Toda la agenda familiar, de un vistazo</h2>
+          <p>Eventos por miembro, recordatorios automáticos y colores por categoría. Cada uno ve lo suyo y lo del resto, sin solapes ni olvidos.</p>
+          <ul class="bullets">
+            <li>Sincronización con Google, Apple y Outlook</li>
+            <li>Recordatorios inteligentes para cada miembro</li>
+            <li>Vista por día, semana y mes</li>
+          </ul>
+          <a href="#" class="btn btn-primary">Probar el calendario</a>
+        </div>
+        <div class="feature-row-visual">
+          <div class="mock-calendar">
+            <div class="mc-header">
+              <strong>Mayo</strong>
+              <span class="mc-arrows">‹ ›</span>
+            </div>
+            <div class="mc-week">
+              <span>L</span><span>M</span><span>X</span><span>J</span><span>V</span><span>S</span><span>D</span>
+            </div>
+            <div class="mc-grid">
+              <div></div><div></div><div></div><div>1</div><div>2</div><div>3</div><div>4</div>
+              <div>5</div><div class="dot-blue">6</div><div>7</div><div class="dot-green">8</div><div>9</div><div>10</div><div>11</div>
+              <div class="today">12</div><div class="dot-orange">13</div><div>14</div><div>15</div><div class="dot-purple">16</div><div>17</div><div>18</div>
+              <div>19</div><div>20</div><div>21</div><div class="dot-blue">22</div><div>23</div><div>24</div><div>25</div>
+              <div>26</div><div>27</div><div class="dot-green">28</div><div>29</div><div>30</div><div>31</div><div></div>
+            </div>
+            <div class="mc-event mc-event--blue"><span>17:30</span> Reunión colegio Lucía</div>
+            <div class="mc-event mc-event--green"><span>18:00</span> Fútbol Mateo</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="feature-row reverse">
+        <div class="feature-row-copy">
+          <p class="eyebrow text-green">Listas y tareas</p>
+          <h2>Listas compartidas que se actualizan al instante</h2>
+          <p>Crea la lista de la compra, las tareas del hogar o los recados. Cada miembro marca lo que va haciendo y todos lo ven en tiempo real.</p>
+          <ul class="bullets">
+            <li>Listas ilimitadas y plantillas reutilizables</li>
+            <li>Sugerencias inteligentes de productos habituales</li>
+            <li>Asigna tareas por miembro o por turno</li>
+          </ul>
+          <a href="#" class="btn btn-primary">Crear mi primera lista</a>
+        </div>
+        <div class="feature-row-visual">
+          <div class="mock-list">
+            <div class="ml-head">
+              <strong>Lista de la compra</strong>
+              <span>12 artículos</span>
+            </div>
+            <label class="ml-item"><input type="checkbox" checked> <span>Pan integral</span><em>x2</em></label>
+            <label class="ml-item"><input type="checkbox" checked> <span>Leche</span><em>x3</em></label>
+            <label class="ml-item"><input type="checkbox"> <span>Manzanas</span><em>1 kg</em></label>
+            <label class="ml-item"><input type="checkbox"> <span>Yogur natural</span><em>x6</em></label>
+            <label class="ml-item"><input type="checkbox"> <span>Huevos</span><em>docena</em></label>
+            <label class="ml-item"><input type="checkbox"> <span>Aguacate 🥑</span><em>x2</em></label>
+            <button class="ml-add">+ Añadir artículo</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="feature-row">
+        <div class="feature-row-copy">
+          <p class="eyebrow text-orange">Menú semanal</p>
+          <h2>Planifica las comidas sin estrés</h2>
+          <p>Organiza el menú de toda la semana, guarda recetas favoritas y deja que la app prepare la lista de la compra por ti.</p>
+          <ul class="bullets">
+            <li>Menús semanales por miembro o para toda la familia</li>
+            <li>Generación automática de lista de la compra</li>
+            <li>Recetas guardadas y reutilizables</li>
+          </ul>
+          <a href="#" class="btn btn-primary">Planificar la semana</a>
+        </div>
+        <div class="feature-row-visual">
+          <div class="mock-menu">
+            <div class="mm-day"><strong>Lunes</strong><span>🥗 Ensalada de pasta · 🍗 Pollo al horno</span></div>
+            <div class="mm-day"><strong>Martes</strong><span>🍝 Espaguetis bolognesa · 🥦 Crema de verduras</span></div>
+            <div class="mm-day mm-day--today"><strong>Miércoles</strong><span>🍕 Pizza casera · 🥗 Ensalada césar</span></div>
+            <div class="mm-day"><strong>Jueves</strong><span>🍣 Sushi · 🍜 Sopa miso</span></div>
+            <div class="mm-day"><strong>Viernes</strong><span>🌮 Tacos de pollo · 🥑 Guacamole</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="feature-row reverse">
+        <div class="feature-row-copy">
+          <p class="eyebrow text-red">Ubicación en tiempo real</p>
+          <h2>Tranquilidad para padres y autonomía para los peques</h2>
+          <p>Recibe avisos cuando alguien llega al colegio, a casa o al trabajo. Sin invadir su privacidad: ellos siempre saben qué se comparte y con quién.</p>
+          <ul class="bullets">
+            <li>Avisos automáticos al llegar a sitios habituales</li>
+            <li>Mapa familiar con miembros visibles solo para ti</li>
+            <li>Privacidad por defecto: cada uno decide qué compartir</li>
+          </ul>
+          <a href="#" class="btn btn-primary">Activar ubicación familiar</a>
+        </div>
+        <div class="feature-row-visual">
+          <div class="mock-map">
+            <div class="map-grid"></div>
+            <span class="map-pin pin-blue" style="top:30%;left:25%">M</span>
+            <span class="map-pin pin-green" style="top:55%;left:60%">P</span>
+            <span class="map-pin pin-orange" style="top:70%;left:35%">L</span>
+            <div class="map-card">
+              <strong>Mateo</strong>
+              <small>Ha llegado al colegio · hace 2 min</small>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ───── Premium ───── -->
+  <section id="premium" class="premium">
+    <div class="container premium-card">
+      <div>
+        <span class="badge-premium badge-premium--lg">Premium</span>
+        <h2>Más funciones para familias que quieren ir un paso más allá</h2>
+        <p>Presupuesto familiar, almacenamiento de fotos ilimitado, copias de seguridad automáticas y soporte prioritario.</p>
+        <div class="cta-row">
+          <a href="#" class="btn btn-primary btn-lg">Probar Premium 30 días</a>
+          <a href="#" class="btn btn-ghost-light btn-lg">Ver planes</a>
+        </div>
+      </div>
+      <ul class="premium-list">
+        <li><span>💶</span> Presupuesto compartido</li>
+        <li><span>☁️</span> Fotos ilimitadas</li>
+        <li><span>🔒</span> Copias automáticas</li>
+        <li><span>⚡</span> Soporte prioritario</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ───── Testimonials ───── -->
+  <section id="opiniones" class="testimonials">
+    <div class="container">
+      <header class="section-head">
+        <p class="eyebrow">Opiniones</p>
+        <h2>Familias reales, organización real</h2>
+      </header>
+      <div class="testimonials-grid">
+        <figure class="testimonial">
+          <blockquote>«Por fin todos sabemos quién recoge a quién. La agenda compartida nos ha cambiado la vida.»</blockquote>
+          <figcaption>
+            <span class="av av-blue">M</span>
+            <div><strong>Marta · Madrid</strong><small>Familia de 5</small></div>
+          </figcaption>
+        </figure>
+        <figure class="testimonial">
+          <blockquote>«La lista de la compra ya no se queda en la nevera. Mi pareja añade cosas desde el trabajo y yo las marco al pasar.»</blockquote>
+          <figcaption>
+            <span class="av av-green">P</span>
+            <div><strong>Pablo · Sevilla</strong><small>Familia de 4</small></div>
+          </figcaption>
+        </figure>
+        <figure class="testimonial">
+          <blockquote>«Los abuelos ven las fotos de los nietos al momento, sin redes sociales. Privado y fácil para ellos.»</blockquote>
+          <figcaption>
+            <span class="av av-orange">L</span>
+            <div><strong>Laura · Bilbao</strong><small>Familia extensa</small></div>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───── Final CTA ───── -->
+  <section class="final-cta">
+    <div class="container final-cta-card">
+      <div>
+        <h2>Empieza a organizar tu familia hoy mismo</h2>
+        <p>Crea una cuenta gratis en menos de un minuto. Invita a quien quieras y empieza a coordinar la vida diaria sin esfuerzo.</p>
+      </div>
+      <div class="cta-row">
+        <a href="#" class="btn btn-light btn-lg">Regístrate gratis</a>
+        <a href="#" class="btn btn-outline-light btn-lg">Descargar app</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───── Footer ───── -->
+  <footer id="ayuda" class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo">
+          <span class="logo-mark logo-mark--light"><span></span><span></span><span></span><span></span></span>
+          <span class="logo-text">FamilyWall</span>
+        </a>
+        <p>La app que coordina la vida diaria de tu familia. Diseñada con cariño en Europa.</p>
+        <div class="social">
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 9V7.5c0-.6.4-.8.7-.8h1.7V4h-2.3c-2.6 0-3.1 2-3.1 3.2V9H8.5v3h2v8h3v-8h2.2l.3-3z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.8.1a6.6 6.6 0 0 1 2.2.4 4.5 4.5 0 0 1 2.3 2.3 6.6 6.6 0 0 1 .4 2.2c.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8a6.6 6.6 0 0 1-.4 2.2 4.5 4.5 0 0 1-2.3 2.3 6.6 6.6 0 0 1-2.2.4c-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1a6.6 6.6 0 0 1-2.2-.4 4.5 4.5 0 0 1-2.3-2.3 6.6 6.6 0 0 1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8a6.6 6.6 0 0 1 .4-2.2A4.5 4.5 0 0 1 5 2.7a6.6 6.6 0 0 1 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.2 0-3.5 0-4.7.1a4.7 4.7 0 0 0-1.7.3 2.7 2.7 0 0 0-1.5 1.5 4.7 4.7 0 0 0-.3 1.7C3.7 8.5 3.7 8.8 3.7 12s0 3.5.1 4.7a4.7 4.7 0 0 0 .3 1.7 2.7 2.7 0 0 0 1.5 1.5 4.7 4.7 0 0 0 1.7.3c1.2.1 1.5.1 4.7.1s3.5 0 4.7-.1a4.7 4.7 0 0 0 1.7-.3 2.7 2.7 0 0 0 1.5-1.5 4.7 4.7 0 0 0 .3-1.7c.1-1.2.1-1.5.1-4.7s0-3.5-.1-4.7a4.7 4.7 0 0 0-.3-1.7 2.7 2.7 0 0 0-1.5-1.5 4.7 4.7 0 0 0-1.7-.3c-1.2-.1-1.5-.1-4.7-.1zm0 3.2a4.8 4.8 0 1 1 0 9.6 4.8 4.8 0 0 1 0-9.6zm0 1.8a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm5-2.1a1.1 1.1 0 1 1 0 2.3 1.1 1.1 0 0 1 0-2.3z"/></svg></a>
+          <a href="#" aria-label="X / Twitter"><svg viewBox="0 0 24 24"><path d="M18.3 3h3.4l-7.5 8.6L23 21h-6.9l-5.4-7-6.2 7H1l8-9.2L1 3h7l4.9 6.5z"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23 7.2a2.8 2.8 0 0 0-2-2C19.2 5 12 5 12 5s-7.2 0-9 .2a2.8 2.8 0 0 0-2 2C1 9 1 12 1 12s0 3 .2 4.8a2.8 2.8 0 0 0 2 2C5 19 12 19 12 19s7.2 0 9-.2a2.8 2.8 0 0 0 2-2c.2-1.8.2-4.8.2-4.8s0-3-.2-4.8zM10 15.5v-7l6 3.5z"/></svg></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Producto</h4>
+        <ul>
+          <li><a href="#funciones">Funciones</a></li>
+          <li><a href="#premium">Premium</a></li>
+          <li><a href="#">Descargar app</a></li>
+          <li><a href="#">Novedades</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="#">Acerca de</a></li>
+          <li><a href="#">Empleos</a></li>
+          <li><a href="#">Prensa</a></li>
+          <li><a href="#">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Soporte</h4>
+        <ul>
+          <li><a href="#">Centro de ayuda</a></li>
+          <li><a href="#">Estado del servicio</a></li>
+          <li><a href="#">Privacidad</a></li>
+          <li><a href="#">Condiciones</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <small>© 2026 FamilyWall · Hecho con 💙 para familias.</small>
+      <small>ES · EN · FR · DE · IT</small>
+    </div>
+  </footer>
 
   <script src="app.js"></script>
 </body>
