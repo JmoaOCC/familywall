@@ -14,6 +14,11 @@ const openDashboardButton = document.getElementById('open-dashboard');
 const addEventButton = document.getElementById('add-event');
 const addMenuButton = document.getElementById('add-menu-item');
 const addItemButton = document.getElementById('add-item');
+const calendarMonthName = document.getElementById('calendar-month-name');
+const prevMonthBtn = document.getElementById('prev-month');
+const nextMonthBtn = document.getElementById('next-month');
+const monthGrid = document.getElementById('month-grid');
+const calendarDate = new Date();
 
 const STORAGE = {
   events: JSON.parse(localStorage.getItem('familyflow-events') || '[]'),
@@ -37,6 +42,16 @@ targetButtons.forEach(button => {
 });
 
 openDashboardButton.addEventListener('click', () => switchTab('dashboard'));
+
+prevMonthBtn.addEventListener('click', () => {
+  calendarDate.setMonth(calendarDate.getMonth() - 1);
+  renderCalendarMonth();
+});
+
+nextMonthBtn.addEventListener('click', () => {
+  calendarDate.setMonth(calendarDate.getMonth() + 1);
+  renderCalendarMonth();
+});
 
 closeModalButton.addEventListener('click', () => {
   modal.classList.add('hidden');
@@ -112,6 +127,71 @@ function renderShopping() {
       renderCounts();
     });
   });
+}
+
+function getMonthName(date) {
+  return date.toLocaleDateString('es-ES', { month: 'long', year: 'numeric' });
+}
+
+function renderCalendarMonth() {
+  const year = calendarDate.getFullYear();
+  const month = calendarDate.getMonth();
+  const firstDay = new Date(year, month, 1).getDay();
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const today = new Date().toISOString().slice(0, 10);
+
+  calendarMonthName.textContent = getMonthName(calendarDate).replace(/\b\w/g, l => l.toUpperCase());
+  monthGrid.innerHTML = '';
+
+  const weekdays = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
+  weekdays.forEach(day => {
+    const header = document.createElement('div');
+    header.className = 'day-header';
+    header.textContent = day;
+    monthGrid.appendChild(header);
+  });
+
+  const firstIndex = (firstDay + 6) % 7;
+  for (let i = 0; i < firstIndex; i += 1) {
+    const emptyCell = document.createElement('div');
+    emptyCell.className = 'day-cell inactive';
+    monthGrid.appendChild(emptyCell);
+  }
+
+  for (let day = 1; day <= daysInMonth; day += 1) {
+    const dateKey = new Date(year, month, day).toISOString().slice(0, 10);
+    const dayCell = document.createElement('div');
+    dayCell.className = 'day-cell';
+
+    if (dateKey === today) {
+      dayCell.classList.add('today');
+    }
+
+    const dayNumber = document.createElement('div');
+    dayNumber.className = 'day-number';
+    dayNumber.textContent = day;
+    dayCell.appendChild(dayNumber);
+
+    const eventDots = document.createElement('div');
+    eventDots.className = 'day-events';
+    const eventCount = STORAGE.events.filter(event => event.date === dateKey).length;
+
+    for (let dot = 0; dot < Math.min(3, eventCount); dot += 1) {
+      const dotEl = document.createElement('span');
+      dotEl.className = 'event-dot';
+      eventDots.appendChild(dotEl);
+    }
+
+    if (eventCount > 3) {
+      const more = document.createElement('span');
+      more.className = 'event-dot';
+      more.style.opacity = '0.5';
+      eventDots.appendChild(more);
+    }
+
+    dayCell.appendChild(eventDots);
+    monthGrid.appendChild(dayCell);
+  }
 }
 
 function openForm(type) {
@@ -203,6 +283,7 @@ addItemButton.addEventListener('click', () => openForm('shopping'));
 
 function renderAll() {
   renderCounts();
+  renderCalendarMonth();
   renderEvents();
   renderMenus();
   renderShopping();
