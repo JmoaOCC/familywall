@@ -27,6 +27,18 @@ const STORAGE = {
 };
 
 const colors = ['tag-blue', 'tag-green', 'tag-orange', 'tag-purple'];
+const categoryStyles = {
+  Cita: 'tag-blue',
+  Escuela: 'tag-green',
+  Actividad: 'tag-orange',
+  Otro: 'tag-purple',
+};
+const categoryIcons = {
+  Cita: '📅',
+  Escuela: '🎒',
+  Actividad: '🏃‍♀️',
+  Otro: '⭐',
+};
 
 function switchTab(tabId) {
   tabs.forEach(tab => tab.classList.toggle('active', tab.id === tabId));
@@ -75,16 +87,25 @@ function renderCounts() {
 }
 
 function renderEvents() {
+  const today = new Date().toISOString().slice(0, 10);
   eventList.innerHTML = STORAGE.events.length
     ? STORAGE.events.map((event, index) => {
-        const colorClass = colors[index % colors.length];
+        const colorClass = categoryStyles[event.category] || colors[index % colors.length];
+        const icon = categoryIcons[event.category] || '⭐';
+        const isToday = event.date === today;
         return `
-          <div class="event-card">
-            <div>
-              <strong>${event.title}</strong>
-              <p>${event.date} · ${event.time}</p>
+          <div class="event-card${isToday ? ' today-event' : ''}">
+            <div class="event-meta">
+              <span class="event-icon">${icon}</span>
+              <div>
+                <strong>${event.title}</strong>
+                <p>${event.date} · ${event.time}</p>
+              </div>
             </div>
-            <span class="event-badge ${colorClass}">${event.category}</span>
+            <div class="event-right">
+              <span class="event-badge ${colorClass}">${event.category}</span>
+              ${isToday ? '<span class="today-chip">Hoy</span>' : ''}
+            </div>
           </div>`;
       }).join('')
     : '<p>Aún no hay eventos. Añade el primer evento familiar.</p>';
@@ -176,16 +197,16 @@ function renderCalendarMonth() {
     eventDots.className = 'day-events';
     const eventCount = STORAGE.events.filter(event => event.date === dateKey).length;
 
-    for (let dot = 0; dot < Math.min(3, eventCount); dot += 1) {
+    const dayEvents = STORAGE.events.filter(event => event.date === dateKey);
+    dayEvents.slice(0, 3).forEach(event => {
       const dotEl = document.createElement('span');
-      dotEl.className = 'event-dot';
+      dotEl.className = `event-dot ${categoryStyles[event.category] || 'tag-blue'}`;
       eventDots.appendChild(dotEl);
-    }
+    });
 
     if (eventCount > 3) {
       const more = document.createElement('span');
-      more.className = 'event-dot';
-      more.style.opacity = '0.5';
+      more.className = 'event-dot more-dot';
       eventDots.appendChild(more);
     }
 

@@ -3,60 +3,97 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>FamilyFlow - Organización para tablet</title>
+  <title>FamilyWall · Tu asistente familiar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="app-shell">
     <header class="app-header">
-      <div>
-        <p class="eyebrow">FamilyFlow</p>
-        <h1>Tu familia organizada en una tablet</h1>
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <span class="brand-dot brand-dot--blue"></span>
+          <span class="brand-dot brand-dot--green"></span>
+          <span class="brand-dot brand-dot--orange"></span>
+          <span class="brand-dot brand-dot--purple"></span>
+        </span>
+        <div>
+          <p class="eyebrow">FamilyWall</p>
+          <h1>Tu asistente familiar</h1>
+        </div>
       </div>
-      <button class="primary-button" id="open-dashboard">Abrir panel</button>
+      <div class="header-actions">
+        <div class="family-avatars" aria-label="Miembros de la familia">
+          <span class="avatar avatar--blue">M</span>
+          <span class="avatar avatar--green">P</span>
+          <span class="avatar avatar--orange">L</span>
+          <span class="avatar avatar--purple">+2</span>
+        </div>
+        <button class="primary-button" id="open-dashboard">Abrir panel</button>
+      </div>
     </header>
 
     <main class="hero-card">
       <div class="hero-copy">
-        <p class="tag">Calendario • Menús • Lista de la compra</p>
-        <h2>Diseñado para familias que usan tablet</h2>
-        <p>Agenda familiar, menú semanal y compras en una interfaz limpia, con botones grandes y navegación fácil.</p>
+        <p class="tag">Calendario · Menús · Compras · Familia</p>
+        <h2>Coordina la vida diaria de toda la familia</h2>
+        <p>Agenda compartida, menú semanal y lista de la compra en una interfaz luminosa, con botones grandes y navegación fácil para padres, niños y abuelos.</p>
+        <div class="hero-chips">
+          <span class="hero-chip"><span class="chip-icon">📅</span>Agenda compartida</span>
+          <span class="hero-chip"><span class="chip-icon">🍽️</span>Menú semanal</span>
+          <span class="hero-chip"><span class="chip-icon">🛒</span>Lista de la compra</span>
+          <span class="hero-chip"><span class="chip-icon">💙</span>Para toda la familia</span>
+        </div>
       </div>
       <div class="hero-actions">
-        <button class="secondary-button" data-target="calendar">Ir al calendario</button>
-        <button class="secondary-button" data-target="menu">Ir al menú</button>
-        <button class="secondary-button" data-target="shopping">Ir a la lista</button>
+        <button class="secondary-button secondary-button--blue" data-target="calendar"><span class="btn-emoji">📅</span> Ir al calendario</button>
+        <button class="secondary-button secondary-button--green" data-target="menu"><span class="btn-emoji">🍽️</span> Ir al menú</button>
+        <button class="secondary-button secondary-button--orange" data-target="shopping"><span class="btn-emoji">🛒</span> Ir a la lista</button>
       </div>
     </main>
 
     <section class="app-nav">
-      <button class="nav-button active" data-tab="dashboard">Inicio</button>
-      <button class="nav-button" data-tab="calendar">Calendario</button>
-      <button class="nav-button" data-tab="menu">Menú</button>
-      <button class="nav-button" data-tab="shopping">Compra</button>
+      <button class="nav-button active" data-tab="dashboard"><span class="nav-emoji">🏠</span> Inicio</button>
+      <button class="nav-button" data-tab="calendar"><span class="nav-emoji">📅</span> Calendario</button>
+      <button class="nav-button" data-tab="menu"><span class="nav-emoji">🍽️</span> Menú</button>
+      <button class="nav-button" data-tab="shopping"><span class="nav-emoji">🛒</span> Compra</button>
     </section>
 
     <section class="tab-panel active" id="dashboard">
       <div class="card">
-        <h3>Resumen rápido</h3>
+        <div class="section-header">
+          <div>
+            <p class="tag">PANEL FAMILIAR</p>
+            <h3>Resumen rápido</h3>
+          </div>
+          <span class="today-chip today-chip--soft">Hoy</span>
+        </div>
         <div class="grid-3">
-          <div class="stat-card">
+          <div class="stat-card stat-card--blue">
+            <span class="stat-icon">📅</span>
             <span>Eventos hoy</span>
             <strong id="today-count">0</strong>
           </div>
-          <div class="stat-card">
+          <div class="stat-card stat-card--green">
+            <span class="stat-icon">🍽️</span>
             <span>Platos planeados</span>
             <strong id="menu-count">0</strong>
           </div>
-          <div class="stat-card">
+          <div class="stat-card stat-card--orange">
+            <span class="stat-icon">🛒</span>
             <span>Artículos pendientes</span>
             <strong id="shopping-count">0</strong>
           </div>
         </div>
       </div>
       <div class="card highlight-card">
-        <h3>Consejo familiar</h3>
-        <p>Usa este tablero para ver el calendario, elegir el menú y marcar los productos comprados sin salir de la pantalla.</p>
+        <div class="highlight-icon">💡</div>
+        <div>
+          <h3>Consejo familiar</h3>
+          <p>Usa este tablero para ver el calendario, elegir el menú y marcar los productos comprados sin salir de la pantalla. Pensado para tablet, perfecto para colgar en la cocina.</p>
+        </div>
       </div>
     </section>
 
@@ -77,6 +114,12 @@
               <strong id="calendar-month-name"></strong>
             </div>
             <button class="ghost-button" id="next-month">&#8250;</button>
+          </div>
+          <div class="calendar-legend">
+            <div class="legend-item"><span class="legend-dot legend-blue"></span>Cita</div>
+            <div class="legend-item"><span class="legend-dot legend-green"></span>Escuela</div>
+            <div class="legend-item"><span class="legend-dot legend-orange"></span>Actividad</div>
+            <div class="legend-item"><span class="legend-dot legend-purple"></span>Otro</div>
           </div>
           <div class="month-grid" id="month-grid"></div>
         </div>
@@ -111,7 +154,7 @@
     </section>
 
     <footer class="app-footer">
-      <p>FamilyFlow · Organización familiar fácil y visual para tablet</p>
+      <p>FamilyWall · Organización familiar fácil y visual para tablet</p>
     </footer>
   </div>
 
