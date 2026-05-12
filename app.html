@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>FamilyWall · App</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="page-app">
+
+  <header class="site-header">
+    <div class="container site-nav">
+      <a href="index.html" class="logo" aria-label="FamilyWall inicio">
+        <span class="logo-mark" aria-hidden="true">
+          <span></span><span></span><span></span><span></span>
+        </span>
+        <span class="logo-text">FamilyWall</span>
+      </a>
+      <nav class="nav-links" aria-label="Principal">
+        <a href="index.html">Inicio</a>
+        <a href="app.html" class="active">App</a>
+        <a href="admin.html">Admin</a>
+      </nav>
+      <div class="nav-actions">
+        <div class="family-avatars" aria-label="Miembros activos">
+          <span class="av av-blue">M</span>
+          <span class="av av-green">P</span>
+          <span class="av av-orange">L</span>
+          <span class="av av-purple">+2</span>
+        </div>
+        <a href="index.html" class="btn btn-ghost">← Web</a>
+      </div>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="app-main">
+    <div class="container">
+
+      <div class="app-page-head">
+        <div>
+          <p class="eyebrow">App familiar</p>
+          <h1>Tu día a día, en tres pestañas</h1>
+        </div>
+        <div class="app-summary">
+          <div class="summary-pill summary-pill--blue"><strong id="today-count">0</strong><span>eventos hoy</span></div>
+          <div class="summary-pill summary-pill--orange"><strong id="menu-count">0</strong><span>platos planeados</span></div>
+          <div class="summary-pill summary-pill--green"><strong id="shopping-count">0</strong><span>artículos</span></div>
+        </div>
+      </div>
+
+      <section class="app-tabs" role="tablist">
+        <button class="app-tab active" data-tab="calendar" role="tab"><span class="nav-emoji">📅</span> Calendario</button>
+        <button class="app-tab" data-tab="menu" role="tab"><span class="nav-emoji">🍽️</span> Menú</button>
+        <button class="app-tab" data-tab="shopping" role="tab"><span class="nav-emoji">🛒</span> Compra</button>
+      </section>
+
+      <!-- Calendario -->
+      <section class="tab-panel active" id="calendar" role="tabpanel">
+        <div class="card">
+          <div class="section-header">
+            <div>
+              <p class="tag">CALENDARIO</p>
+              <h3>Agenda familiar</h3>
+            </div>
+            <button class="btn btn-primary" id="add-event">+ Añadir evento</button>
+          </div>
+          <div class="month-panel">
+            <div class="month-nav">
+              <button class="ghost-button" id="prev-month" aria-label="Mes anterior">‹</button>
+              <div>
+                <p class="month-label">Mes</p>
+                <strong id="calendar-month-name"></strong>
+              </div>
+              <button class="ghost-button" id="next-month" aria-label="Mes siguiente">›</button>
+            </div>
+            <div class="calendar-legend">
+              <div class="legend-item"><span class="legend-dot legend-blue"></span>Cita</div>
+              <div class="legend-item"><span class="legend-dot legend-green"></span>Escuela</div>
+              <div class="legend-item"><span class="legend-dot legend-orange"></span>Actividad</div>
+              <div class="legend-item"><span class="legend-dot legend-purple"></span>Otro</div>
+            </div>
+            <div class="month-grid" id="month-grid"></div>
+          </div>
+          <div class="event-list" id="event-list"></div>
+        </div>
+      </section>
+
+      <!-- Menú -->
+      <section class="tab-panel" id="menu" role="tabpanel">
+        <div class="card">
+          <div class="section-header">
+            <div>
+              <p class="tag">MENÚ SEMANAL</p>
+              <h3>Planifica las comidas</h3>
+            </div>
+            <button class="btn btn-primary" id="add-menu-item">+ Añadir plato</button>
+          </div>
+          <div class="menu-list" id="menu-list"></div>
+        </div>
+      </section>
+
+      <!-- Compra -->
+      <section class="tab-panel" id="shopping" role="tabpanel">
+        <div class="card">
+          <div class="section-header">
+            <div>
+              <p class="tag">LISTA DE LA COMPRA</p>
+              <h3>Todo en un lugar</h3>
+            </div>
+            <button class="btn btn-primary" id="add-item">+ Añadir artículo</button>
+          </div>
+          <div class="shopping-list" id="shopping-list"></div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <div class="modal hidden" id="modal" aria-hidden="true">
+    <div class="modal-panel">
+      <button class="close-button" id="close-modal" aria-label="Cerrar">×</button>
+      <div id="modal-content"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

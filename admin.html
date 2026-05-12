@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>FamilyWall · Panel admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="page-admin">
+
+  <header class="site-header">
+    <div class="container site-nav">
+      <a href="index.html" class="logo" aria-label="FamilyWall inicio">
+        <span class="logo-mark" aria-hidden="true">
+          <span></span><span></span><span></span><span></span>
+        </span>
+        <span class="logo-text">FamilyWall <em class="logo-tag">admin</em></span>
+      </a>
+      <nav class="nav-links" aria-label="Principal">
+        <a href="index.html">Inicio</a>
+        <a href="app.html">App</a>
+        <a href="admin.html" class="active">Admin</a>
+      </nav>
+      <div class="nav-actions">
+        <span class="admin-pill"><span class="status-dot"></span> Conectado</span>
+        <a href="index.html" class="btn btn-ghost">← Web</a>
+      </div>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="admin-main">
+    <div class="container">
+
+      <div class="admin-page-head">
+        <div>
+          <p class="eyebrow">Panel admin</p>
+          <h1>Gestión de usuarios</h1>
+          <p class="muted">Crea, edita y elimina las cuentas de tu familia o de cualquier grupo.</p>
+        </div>
+        <button class="btn btn-primary btn-lg" id="open-new-user">+ Nuevo usuario</button>
+      </div>
+
+      <!-- Stats -->
+      <section class="admin-stats">
+        <article class="admin-stat admin-stat--blue">
+          <span class="admin-stat-icon">👥</span>
+          <div>
+            <strong id="stat-total">0</strong>
+            <span>Usuarios totales</span>
+          </div>
+        </article>
+        <article class="admin-stat admin-stat--green">
+          <span class="admin-stat-icon">🟢</span>
+          <div>
+            <strong id="stat-active">0</strong>
+            <span>Activos</span>
+          </div>
+        </article>
+        <article class="admin-stat admin-stat--orange">
+          <span class="admin-stat-icon">⭐</span>
+          <div>
+            <strong id="stat-premium">0</strong>
+            <span>Premium</span>
+          </div>
+        </article>
+        <article class="admin-stat admin-stat--purple">
+          <span class="admin-stat-icon">🏠</span>
+          <div>
+            <strong id="stat-families">0</strong>
+            <span>Familias</span>
+          </div>
+        </article>
+      </section>
+
+      <!-- Toolbar -->
+      <section class="admin-toolbar">
+        <div class="search-wrap">
+          <span class="search-icon">🔍</span>
+          <input type="search" id="search-input" placeholder="Buscar por nombre, email o familia…" />
+        </div>
+        <div class="filter-wrap">
+          <select id="filter-role">
+            <option value="">Todos los roles</option>
+            <option value="Admin">Admin</option>
+            <option value="Padre">Padre</option>
+            <option value="Madre">Madre</option>
+            <option value="Hijo/a">Hijo/a</option>
+            <option value="Otro">Otro</option>
+          </select>
+          <select id="filter-status">
+            <option value="">Todos los estados</option>
+            <option value="active">Activos</option>
+            <option value="inactive">Inactivos</option>
+          </select>
+          <button class="btn btn-ghost" id="reset-filters">Limpiar</button>
+        </div>
+      </section>
+
+      <!-- Users table -->
+      <section class="admin-card">
+        <div class="table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Usuario</th>
+                <th>Email</th>
+                <th>Familia</th>
+                <th>Rol</th>
+                <th>Plan</th>
+                <th>Estado</th>
+                <th>Última conexión</th>
+                <th class="th-actions">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="users-tbody"></tbody>
+          </table>
+        </div>
+        <p class="empty-state hidden" id="empty-state">
+          No hay usuarios que coincidan con tu búsqueda. Prueba a limpiar los filtros o añade uno nuevo.
+        </p>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Modal usuario -->
+  <div class="modal hidden" id="user-modal" aria-hidden="true">
+    <div class="modal-panel">
+      <button class="close-button" id="close-user-modal" aria-label="Cerrar">×</button>
+      <h3 id="user-modal-title">Nuevo usuario</h3>
+      <form id="user-form" novalidate>
+        <input type="hidden" name="id" />
+        <div class="form-row">
+          <label>
+            <span>Nombre</span>
+            <input type="text" name="name" placeholder="Marta Pérez" required>
+          </label>
+          <label>
+            <span>Email</span>
+            <input type="email" name="email" placeholder="marta@ejemplo.com" required>
+          </label>
+        </div>
+        <div class="form-row">
+          <label>
+            <span>Familia</span>
+            <input type="text" name="family" placeholder="Familia Pérez" required>
+          </label>
+          <label>
+            <span>Rol</span>
+            <select name="role" required>
+              <option>Padre</option>
+              <option>Madre</option>
+              <option>Hijo/a</option>
+              <option>Admin</option>
+              <option>Otro</option>
+            </select>
+          </label>
+        </div>
+        <div class="form-row">
+          <label>
+            <span>Plan</span>
+            <select name="plan" required>
+              <option value="Free">Free</option>
+              <option value="Premium">Premium</option>
+            </select>
+          </label>
+          <label>
+            <span>Estado</span>
+            <select name="status" required>
+              <option value="active">Activo</option>
+              <option value="inactive">Inactivo</option>
+            </select>
+          </label>
+        </div>
+        <label>
+          <span>Color de avatar</span>
+          <div class="color-picker" role="radiogroup">
+            <label class="color-swatch"><input type="radio" name="color" value="blue" checked><span class="dot bg-blue"></span></label>
+            <label class="color-swatch"><input type="radio" name="color" value="green"><span class="dot bg-green"></span></label>
+            <label class="color-swatch"><input type="radio" name="color" value="orange"><span class="dot bg-orange"></span></label>
+            <label class="color-swatch"><input type="radio" name="color" value="purple"><span class="dot bg-purple"></span></label>
+            <label class="color-swatch"><input type="radio" name="color" value="pink"><span class="dot bg-pink"></span></label>
+            <label class="color-swatch"><input type="radio" name="color" value="teal"><span class="dot bg-teal"></span></label>
+          </div>
+        </label>
+        <div class="form-actions">
+          <button type="button" class="btn btn-ghost" id="cancel-user">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Guardar usuario</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal confirmación borrado -->
+  <div class="modal hidden" id="confirm-modal" aria-hidden="true">
+    <div class="modal-panel modal-panel--sm">
+      <h3>¿Eliminar a este usuario?</h3>
+      <p class="muted" id="confirm-text">Esta acción no se puede deshacer.</p>
+      <div class="form-actions">
+        <button class="btn btn-ghost" id="cancel-delete">Cancelar</button>
+        <button class="btn btn-danger" id="confirm-delete">Eliminar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>
